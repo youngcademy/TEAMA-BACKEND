@@ -83,33 +83,35 @@ module.exports = {
   },
   login: (req, res) => {
     const body = req.body;
-    getUserByID(body.user, (err, results) => {
-      if (err) {
-        console.log(err);
-      }
-      if (!results) {
-        return res.json({
-          success: 0,
-          message: "Invalid ID or Password",
-        });
-      }
-      const result = compareSync(body.user, results.user);
-      if (result) {
-        results.user = undefined;
-        const jsontoken = sign({ result: results }, body.user, {
-          expiresIn: "1h",
-        });
-        return res.json({
-          success: 1,
-          message: "login successfully",
-          token: jsontoken,
-        });
-      } else {
-        return res.json({
-          success: 0,
-          message: "Invalid ID or Password",
-        });
-      }
-    });
+    console.log(body);
+    return res.json({ message: "HELLO" });
+    // getUserByID(body.user, (err, results) => {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   if (!results) {
+    //     return res.json({
+    //       success: 0,
+    //       message: "Invalid ID or Password",
+    //     });
+    //   }
+    //   const result = compareSync(body.user, results.user);
+    //   if (result) {
+    //     results.user = undefined;
+    //     const jsontoken = sign({ result: results }, body.user, {
+    //       expiresIn: "1h",
+    //     });
+    //     return res.json({
+    //       success: 1,
+    //       message: "login successfully",
+    //       token: jsontoken,
+    //     });
+    //   } else {
+    //     return res.json({
+    //       success: 0,
+    //       message: "Invalid ID or Password",
+    //     });
+    //   }
+    // });
   },
 };
